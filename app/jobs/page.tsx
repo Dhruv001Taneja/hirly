@@ -1,5 +1,7 @@
 "use client"
 
+export const dynamic = "force-dynamic"
+
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
@@ -123,6 +125,7 @@ export default function JobsPage() {
   ])
 
   useEffect(() => {
+    if (typeof window === "undefined") return
     const globalJobs = JSON.parse(localStorage.getItem("globalPostedJobs") || "[]")
     if (globalJobs.length > 0) {
       setAllJobs((prev) => [...globalJobs, ...prev])

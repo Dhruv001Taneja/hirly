@@ -1,5 +1,7 @@
 "use client"
 
+export const dynamic = "force-dynamic"
+
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -29,6 +31,7 @@ export default function DashboardPage() {
   const [selectedWorkId, setSelectedWorkId] = useState<number | null>(null)
 
   useEffect(() => {
+    if (typeof window === "undefined") return
     // Load applied work from localStorage
     const savedAppliedWork = localStorage.getItem("appliedWork")
     if (savedAppliedWork) {

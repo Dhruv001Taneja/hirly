@@ -51,6 +51,7 @@ export default function HomePage() {
   ])
 
   useEffect(() => {
+    if (typeof window === "undefined") return
     const postedJobs = JSON.parse(localStorage.getItem("globalPostedJobs") || "[]")
     if (postedJobs.length > 0) {
       setFeaturedJobs((prev) => [...postedJobs.slice(0, 4), ...prev].slice(0, 4))

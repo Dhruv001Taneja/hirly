@@ -1,5 +1,7 @@
 "use client"
 
+export const dynamic = "force-dynamic"
+
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -30,6 +32,8 @@ export default function EmployerPage() {
   const [employerEmail, setEmployerEmail] = useState("info@business.com")
 
   useEffect(() => {
+    if (typeof window === "undefined") return
+
     const savedEmail = localStorage.getItem("employerEmail")
     if (savedEmail) {
       setEmployerEmail(savedEmail)
@@ -40,7 +44,6 @@ export default function EmployerPage() {
       try {
         const jobs = JSON.parse(savedJobs)
         setPostedJobs(jobs)
-        console.log("[v0] Loaded jobs:", jobs)
       } catch (e) {
         console.log("[v0] Error loading jobs:", e)
       }
@@ -51,7 +54,6 @@ export default function EmployerPage() {
       try {
         const apps = JSON.parse(savedApplications)
         setApplications(apps)
-        console.log("[v0] Loaded applications:", apps)
       } catch (e) {
         console.log("[v0] Error loading applications:", e)
       }
