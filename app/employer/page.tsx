@@ -27,7 +27,14 @@ export default function EmployerPage() {
   const [postedJobs, setPostedJobs] = useState<any[]>([])
   const [applications, setApplications] = useState<any[]>([])
 
+  const [employerEmail, setEmployerEmail] = useState("info@business.com")
+
   useEffect(() => {
+    const savedEmail = localStorage.getItem("employerEmail")
+    if (savedEmail) {
+      setEmployerEmail(savedEmail)
+    }
+
     const savedJobs = localStorage.getItem("globalPostedJobs")
     if (savedJobs) {
       try {
@@ -100,7 +107,7 @@ export default function EmployerPage() {
     businessName: "Local Business",
     industry: "Various",
     location: "City",
-    email: localStorage.getItem("employerEmail") || "info@business.com",
+    email: employerEmail,
     phone: "(555) 987-6543",
     bio: "Supporting local employment",
   }
