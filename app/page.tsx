@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Search, Briefcase, Users, TrendingUp, ArrowRight, MapPin, IndianRupee, Clock, Plus } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export default function HomePage() {
   const router = useRouter()
@@ -94,6 +95,7 @@ export default function HomePage() {
               </Link>
             </div>
             <div className="flex items-center gap-3">
+              <ThemeToggle />
               <Button variant="outline" className="hidden sm:inline-flex bg-transparent">
                 <Link href="/auth/signin-seeker" className="hover:no-underline">
                   Sign In
